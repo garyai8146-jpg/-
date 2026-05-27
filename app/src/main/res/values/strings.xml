@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Dark Sleep</string>
+    <string name="accessibility_service_description">此無障礙服務用於協助鎖定螢幕(進入休眠)。</string>
+</resources>

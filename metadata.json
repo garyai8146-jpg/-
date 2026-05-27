@@ -1,0 +1,6 @@
+{
+  "name": "Dark Sleep",
+  "description": "Auto sleep screen when ambient light is low and user is inactive.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
