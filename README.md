@@ -1,21 +1,37 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
-</div>
+# Dark Sleep｜Android 智慧螢幕休眠
 
-# Run and deploy your AI Studio app
+> 為平板使用情境設計的 Android 工具：參考環境光與使用者閒置狀態，協助自動關閉螢幕，減少因皮套休眠功能失效帶來的不便。
 
-This contains everything you need to run your app locally.
+## 專案背景
 
-View your app in AI Studio: https://ai.studio/apps/3a8db66f-8f63-4237-989d-10654e21fb1a
+部分平板在搭配皮套或磁吸配件時，無法可靠觸發原本的螢幕休眠行為。Dark Sleep 嘗試從軟體端提供替代方案，讓使用者能在暗處、停止操作後管理螢幕狀態。
 
-## Run Locally
+## 實作重點
 
-**Prerequisites:**  [Android Studio](https://developer.android.com/studio)
+- **情境式休眠邏輯：** 結合環境亮度與閒置判斷，而非僅使用固定倒數。
+- **Android 系統整合：** 原生 Android 專案，包含前景畫面與 `AccessibilityService` 服務元件。
+- **權限邊界：** 螢幕鎖定／輔助使用權限涉及系統限制，必須由使用者在裝置設定中明確授權。
+- **裝置差異：** 不同 Android 版本、品牌省電策略及光線感應器會影響實際結果。
 
+## 技術棧
 
-1. Open Android Studio
-2. Select **Open** and choose the directory containing this project
-3. Allow Android Studio to fix any incompatibilities as it imports the project.
-4. Create a file named `.env` in the project directory and set `GEMINI_API_KEY` in that file to your Gemini API key (see `.env.example` for an example)
-5. Remove this line from the app's `build.gradle.kts` file: `signingConfig = signingConfigs.getByName("debugConfig")`
-6. Run the app on an emulator or physical device
+Kotlin · Android SDK · Gradle · Android Accessibility Service
+
+## 在 Android Studio 開啟
+
+1. 使用 Android Studio 開啟儲存庫根目錄。
+2. 等待 Gradle 同步，依本機 SDK 安裝狀況處理版本需求。
+3. 選擇模擬器或 Android 平板，編譯並啟動 `app`。
+4. 依應用程式畫面及 Android 系統提示設定所需權限，測試休眠條件。
+
+本專案的核心螢幕行為應以**實體裝置**驗證；模擬器不一定有可用的環境光感測資料。
+
+## 面試展示重點
+
+- 把實際的硬體／系統使用問題轉成可調整的應用層邏輯。
+- Android 輔助使用服務的權限設計、生命週期與裝置相容性。
+- 為何感測器訊號必須和使用者狀態一起判斷，才能避免不必要的螢幕關閉。
+
+## 專案狀態與限制
+
+這是針對特定平板情境開發的工具，**不是通用 Android 休眠功能的保證替代品**。實際效能與可用性需依 Android 版本、裝置硬體及系統政策測試。請勿把儲存庫內的示範簽署素材作為正式發行金鑰。
